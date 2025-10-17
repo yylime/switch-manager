@@ -1,0 +1,12 @@
+Value Required NAME ([\S]+)
+Value Required SN (\S+)
+
+
+Start
+  ^\s*(Slot [0-9]+|Chassis self).*: -> readsn
+  
+readsn
+  ^\s*DEVICE_NAME\s+: ${NAME}
+  ^\s*DEVICE_SERIAL_NUMBER : ${SN} -> Record
+  ^.* -> Start
+  

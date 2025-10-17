@@ -1,0 +1,8 @@
+Value Required TYPE (N\S+)
+
+Start
+  ^NAME:\s+"Chassis",\s+DESCR:[\S\s]+(Chassis|chassis).* -> readsn
+
+readsn
+  ^PID: ${TYPE}\s+.* -> Record
+  ^.* -> Start

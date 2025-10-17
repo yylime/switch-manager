@@ -1,0 +1,7 @@
+Value Required NAME ([0-9]+|Switch System|Switch [0-9]+|CISCO3945-CHASSIS|CISCO7606-S|Chassis|WS-C6509-E)
+Value Required SN (\S+)
+
+
+Start
+  ^NAME: "${NAME}",\s+DESCR: [\S\s]+
+  ^PID: [\S\s]+ VID: [\S\s]+ SN: ${SN} -> Record

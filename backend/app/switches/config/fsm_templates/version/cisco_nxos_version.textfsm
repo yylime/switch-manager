@@ -1,0 +1,7 @@
+Value Required VERSION (\S+)
+
+Start
+  ^Software -> readver
+
+readver
+  ^\s*(NXOS|system):\s+version ${VERSION} -> Record

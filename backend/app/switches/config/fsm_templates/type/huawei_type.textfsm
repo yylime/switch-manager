@@ -1,0 +1,4 @@
+Value Required TYPE (\S+)
+
+Start
+  ^(HUAWEI|Huawei|Quidway) (CloudEngine)*\s*${TYPE} .*uptime .*  -> Record

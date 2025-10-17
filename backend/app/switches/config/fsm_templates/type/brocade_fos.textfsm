@@ -1,0 +1,5 @@
+Value Required TYPE (\S+)
+
+
+Start
+  ^Part Num:\s+${TYPE} -> Record

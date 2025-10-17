@@ -1,0 +1,5 @@
+Value Required VERSION (\S+)
+
+Start
+  ^VRP .*, Version ${VERSION} .* -> Record
+  ^Version ${VERSION} .* -> Record

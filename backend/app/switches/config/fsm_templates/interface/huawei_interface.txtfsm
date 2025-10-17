@@ -1,0 +1,16 @@
+Value Required INTERFACE (.*Ether\S+|GE\S+)
+Value LINE_STATUS (UP|DOWN|Administratively DOWN)
+Value PROTOCOL_STATUS (UP(\(spoofing\))?|DOWN)
+Value PORT_LINK_TYPE (\S+)
+Value VLAN_NATIVE (\d+)
+Value UP_TIME (\S+\s\S+)
+Value DOWN_TIME (\S+\s\S+)
+
+Start
+  ^\s*${INTERFACE} current state : ${LINE_STATUS}
+  ^\s*.* protocol.*: ${PROTOCOL_STATUS}
+  ^\s*.*Link-type : ${PORT_LINK_TYPE}(configured),
+  ^\s*PVID :  ${VLAN_NATIVE},.*
+  ^\s*Last physical up.*: ${UP_TIME}.*
+  ^\s*Last physical down.*: ${DOWN_TIME}.*
+  ^(#|!|\s*$$) -> Record
