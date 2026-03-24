@@ -1,0 +1,11 @@
+Value Required NAME ([\S]+)
+Value Required SN ([A-Z0-9]{12,20})
+
+
+Start
+  ^\[Board Properties\] -> readsn
+
+readsn
+  ^BoardType=${NAME}
+  ^BarCode=${SN} -> Record
+  ^.* -> Start

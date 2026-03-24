@@ -1,0 +1,15 @@
+Value Required Interface (\S+)
+Value Required IP (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})
+Value MSK (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|[0-9]{1,2})
+Value VRF (\S+)
+Value ACL (\S+)
+Value Status (shutdown)
+
+
+Start
+  ^interface\s+${Interface}
+  ^\s{0,10}(?:ip vrf forwarding|vrf member|ip binding vpn-instance|vrf forwarding) ${VRF}
+  ^\s*ip access-group ${ACL} in
+  ^\s{0,10}ip address ${IP}(\s+|/+)${MSK}$$
+  ^\s{0,10}${Status}
+  ^(#|!|\s*$$) -> Record

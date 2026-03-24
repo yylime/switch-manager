@@ -1,0 +1,5 @@
+Value Required VRF (\S+)
+
+
+Start
+  ^(ip vrf|vrf context|ip vpn-instance) ${VRF} -> Record

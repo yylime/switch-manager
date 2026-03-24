@@ -1,0 +1,4 @@
+Value Required VERSION (\S+)
+
+Start
+  ^Fabric OS:\s+${VERSION} -> Record

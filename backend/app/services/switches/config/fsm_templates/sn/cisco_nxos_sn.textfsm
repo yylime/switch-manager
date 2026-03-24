@@ -1,0 +1,10 @@
+Value Required NAME (Chassis|chassis)
+Value Required SN ([A-Z0-9]{10,20})
+
+
+Start
+  ^NAME:\s+"Chassis",\s+DESCR:[\S\s]+${NAME}.* -> readsn
+
+readsn
+  ^PID: [\S\s]+ VID: [\S\s]+ SN: ${SN} -> Record
+  ^.* -> Start

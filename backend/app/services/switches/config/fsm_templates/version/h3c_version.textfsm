@@ -1,0 +1,5 @@
+Value Required VERSION (\S+)
+
+Start
+  ^H3C.*Version ${VERSION},.* -> Record
+  ^Comware.*Version ${VERSION},.* -> Record

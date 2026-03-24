@@ -1,0 +1,4 @@
+Value Required TYPE (\S+)
+
+Start
+  ^H3C ${TYPE} .*uptime .*  -> Record
