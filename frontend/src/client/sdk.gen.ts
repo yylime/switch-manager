@@ -210,6 +210,7 @@ export class DiffsService {
     /**
      * Get Config Diffs
      * Get switch configuration differences.
+     * 权限验证：通过 current_user: CurrentUser 依赖项自动完成。
      * @param data The data for the request.
      * @param data.configDate
      * @returns SwitchConfigDiffShow Successful Response
@@ -651,6 +652,9 @@ export class SwitchesService {
     /**
      * Create Switch
      * Create new switch.
+     *
+     * Requires authentication. The current_user parameter triggers automatic
+     * permission validation through dependency injection.
      * @param data The data for the request.
      * @param data.requestBody
      * @returns Switch Successful Response
@@ -671,6 +675,9 @@ export class SwitchesService {
     /**
      * Read Switch
      * Get switch by ID.
+     *
+     * Requires authentication. The current_user parameter triggers automatic
+     * permission validation through dependency injection.
      * @param data The data for the request.
      * @param data.id
      * @returns SwitchLite Successful Response
@@ -840,6 +847,10 @@ export class SwitchesService {
     
     /**
      * Export Switches
+     * Export switches to Excel.
+     *
+     * Requires authentication. The current_user parameter triggers automatic
+     * permission validation through dependency injection.
      * @returns unknown Successful Response
      * @throws ApiError
      */
