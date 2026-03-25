@@ -1,6 +1,6 @@
 import datetime
 import textfsm
-
+import logging
 from sqlalchemy import delete
 
 from app.api.deps import db_session
@@ -9,6 +9,7 @@ from app.services.switches.config.utils import cal_mask_len
 
 
 def build_ip_interface():
+    logging.info("Start build ip interface")
     today = datetime.date.today()
     with db_session() as session:
         # reset iptables
@@ -36,6 +37,7 @@ def build_ip_interface():
                     switch=cfg.switch,
                 )
                 session.add(iptable_item)
+    logging.info("build ip interface successfully")
 
 
 if __name__ == "__main__":

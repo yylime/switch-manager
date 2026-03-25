@@ -5,6 +5,7 @@ import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
 import { IPtables } from './components/iptables-table'
+import { IptablesPrimaryButtons } from './components/iptables-primary-buttons'
 
 export function IPtablesPage() {
   return (
@@ -26,6 +27,7 @@ export function IPtablesPage() {
               Here&apos;s a table of IPs!
             </p>
           </div>
+          <IptablesPrimaryButtons />
         </div>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-y-0 lg:space-x-12'>
           <IPtables />

@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from netmiko import ConnectHandler
 from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import cpu_count
+import logging
 
 from app.api.deps import db_session
 from app.models import Switch, SwitchConfig
@@ -65,7 +66,7 @@ def read_config(switch: Switch, session: Session, update_force=False) -> dict:
         return {"status": "no_inspector", "output": "null"}
     
     # 3. stype为空则检测并写入
-    if not switch.stype:
+    if switch.stype is None or switch.stype == "None" or not switch.stype:
         switch.stype = paramiko_detect_stype(
             switch.ip, switch.inspector.name, switch.inspector.password, switch.login_type.name, port=switch.port
         )

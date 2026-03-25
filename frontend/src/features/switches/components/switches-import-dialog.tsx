@@ -23,6 +23,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { SwitchesService } from '@/client'
 import { toast } from 'sonner'
+import { useQueryClient } from '@tanstack/react-query'
 
 const formSchema = z.object({
   file: z
@@ -55,6 +56,7 @@ export function SwitchesImportDialog({
   })
 
   const fileRef = form.register('file')
+  const queryClient = useQueryClient()
 
   const onSubmit = async () => {
     const file = form.getValues('file')
@@ -70,6 +72,8 @@ export function SwitchesImportDialog({
 
       // 3. 上传成功后的反馈
       showSubmittedData(res, '导入结果');
+      // refresh the table
+      queryClient.invalidateQueries({ queryKey: ['switches'] })
 
       // 4. 只有成功了才关闭弹窗
       onOpenChange(false);

@@ -217,13 +217,6 @@ export type NewPassword = {
     new_password: string;
 };
 
-export type PrivateUserCreate = {
-    email: string;
-    password: string;
-    full_name: string;
-    is_verified?: boolean;
-};
-
 export type Switch = {
     /**
      * 设备名
@@ -700,6 +693,10 @@ export type IptablesReadIptablesData = {
 
 export type IptablesReadIptablesResponse = (IPtablesPublic);
 
+export type IptablesFlushIptablesBackgroundResponse = ({
+    [key: string]: unknown;
+});
+
 export type LoginLoginAccessTokenData = {
     formData: Body_login_login_access_token;
 };
@@ -725,12 +722,6 @@ export type LoginRecoverPasswordHtmlContentData = {
 };
 
 export type LoginRecoverPasswordHtmlContentResponse = (string);
-
-export type PrivateCreateUserData = {
-    requestBody: PrivateUserCreate;
-};
-
-export type PrivateCreateUserResponse = (UserPublic);
 
 export type ScheduleCreateBackupJobData = {
     requestBody: BackupJobCreate;
@@ -892,3 +883,7 @@ export type VrfsReadVrfsData = {
 };
 
 export type VrfsReadVrfsResponse = (VrfsPublic);
+
+export type VrfsFlushVrfBackgroundResponse = ({
+    [key: string]: unknown;
+});

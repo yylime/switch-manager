@@ -2,22 +2,22 @@ import { RefreshCwIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ConfirmDialog } from '@/components/confirm-dialog'
 import { useState } from 'react'
-import { ApiError, ArptablesService } from '@/client'
+import { ApiError, IptablesService } from '@/client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { handleServerError } from '@/lib/handle-server-error'
 
-export function ArpPrimaryButtons() {
+export function IptablesPrimaryButtons() {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
   const queryClient = useQueryClient()
 
   const refreshMutation = useMutation({
-    mutationFn: () => ArptablesService.flushArpBackground(),
+    mutationFn: () => IptablesService.flushIptablesBackground(),
     onSuccess: () => {
       toast.success('后台刷新中，请稍后查看')
       setTimeout(() => {
-        queryClient.invalidateQueries({ queryKey: ['arptables'] })
-      }, 5) // 10秒后再重新拉取
+        queryClient.invalidateQueries({ queryKey: ['iptables'] })
+      }, 2) // 2秒后再重新拉取
     },
     onError: (err: ApiError) => {
       handleServerError(err)
@@ -41,7 +41,7 @@ export function ArpPrimaryButtons() {
         open={isConfirmOpen}
         onOpenChange={setIsConfirmOpen}
         title='确认刷新数据？'
-        desc='此操作将重新获取 ARP 表数据，可能会消耗一些时间。'
+        desc='此操作将重新获取iptables表数据，可能会消耗一些时间。'
         cancelBtnText='取消'
         confirmText='刷新'
         handleConfirm={handleRefresh}

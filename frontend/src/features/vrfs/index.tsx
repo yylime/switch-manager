@@ -5,6 +5,7 @@ import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
 import { Vrfs } from './components/vrftables-table'
+import { VrfsPrimaryButtons } from './components/vrfs-primary-buttons'
 
 export function VrfsPage() {
   return (
@@ -26,6 +27,7 @@ export function VrfsPage() {
               Here&apos;s a list of your Vrfs table!
             </p>
           </div>
+          <VrfsPrimaryButtons />
         </div>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-y-0 lg:space-x-12'>
           <Vrfs />

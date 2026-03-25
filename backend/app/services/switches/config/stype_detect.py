@@ -158,7 +158,7 @@ def paramiko_detect_stype(
 
 if __name__ == "__main__":
     start = time.time()
-    detect = paramiko_detect_stype("172.16.0.6", "test", "test", "telnet", port=22)
+    detect = paramiko_detect_stype("10.79.4.16", "yiyulin", "yyl123456", "telnet", port=22)
     res = detect
     print("Detected type:", res)
     print("Cost time:", time.time() - start)

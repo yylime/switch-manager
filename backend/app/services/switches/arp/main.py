@@ -88,6 +88,7 @@ def read_arp(switch_id: str, vrf_database=None) -> dict:
 
 
 def read_all_arp():
+    get_vrf_for_switch()
     # 1. 仅获取 ID，避免携带过重的 ORM 对象跨线程/跨 Session
     with db_session() as session:
         switch_ids = [str(s.id) for s in session.query(Switch.id).all()]

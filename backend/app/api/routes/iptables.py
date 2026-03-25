@@ -2,13 +2,14 @@
 from typing import Any
 
 
-from fastapi import APIRouter
+from fastapi import APIRouter, BackgroundTasks
 from sqlmodel import func, select, or_
 
 from sqlalchemy.orm import selectinload
 
 
-from app.api.deps import SessionDep
+from app.api.deps import SessionDep, CurrentUser
+from app.services.switches.config.iptables import build_ip_interface
 
 from app.models import (
     Switch,
@@ -59,3 +60,14 @@ def read_iptables(
     ).all()
     
     return IPtablesPublic(data=items, count=count)
+
+
+@router.get("/flush_iptables", response_model=dict)
+def flush_iptables_background(
+    session: SessionDep, current_user: CurrentUser, background_tasks: BackgroundTasks
+) -> Any:
+    """
+    Flush iptables.
+    """
+    background_tasks.add_task(build_ip_interface)
+    return {"status": "success", "message": "刷新成功"}

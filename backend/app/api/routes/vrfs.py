@@ -1,10 +1,11 @@
 from typing import Any
 
-from fastapi import APIRouter
+from fastapi import APIRouter, BackgroundTasks
 from sqlmodel import func, select, or_
 
-from app.api.deps import SessionDep
+from app.api.deps import SessionDep, CurrentUser
 from app.models import Vrf, VrfsPublic
+from app.services.switches.config.vrfs import build_vrf_infomation
 
 
 router = APIRouter(prefix="/vrfs", tags=["vrfs"])
@@ -39,3 +40,13 @@ def read_vrfs(
     ).all()
 
     return VrfsPublic(data=items, count=count)
+
+@router.get("/flush_vrf", response_model=dict)
+def flush_vrf_background(
+    session: SessionDep, current_user: CurrentUser, background_tasks: BackgroundTasks
+) -> Any:
+    """
+    Flush iptables.
+    """
+    background_tasks.add_task(build_vrf_infomation)
+    return {"status": "success", "message": "刷新成功"}
