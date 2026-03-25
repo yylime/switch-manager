@@ -1,0 +1,6 @@
+Value NAME (\S+)
+Value Required SN ([A-Z0-9]{10,20})
+
+
+Start
+  ^${NAME} Serial Num:\s+${SN} -> Record

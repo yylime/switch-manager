@@ -1,0 +1,8 @@
+Value Required Interface (\S+)
+Value Required Vlan (\d+)
+
+
+Start
+  ^interface\s+${Interface}
+  ^\s{0,10}(?:switchport access vlan|port access vlan|port default vlan) ${Vlan}
+  ^(#|!|\s*$$) -> Record

@@ -1,0 +1,6 @@
+Value Required TYPE (\S+)
+
+
+Start
+  ^Model (n|N)umber\s+: ${TYPE} -> Record
+  ^(cisco|Cisco) ${TYPE} .*memory. -> Record

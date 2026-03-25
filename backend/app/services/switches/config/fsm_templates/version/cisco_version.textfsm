@@ -1,0 +1,5 @@
+Value Required VERSION ([^,\s]+)
+
+
+Start
+  ^.*Software.*Version ${VERSION}(,| ).* -> Record

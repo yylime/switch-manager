@@ -1,0 +1,13 @@
+Value Required INTERFACE (.*Eth\S+)
+Value LINK_STATUS (.+?)
+Value PROTOCOL_STATUS (.+?)
+Value LAST_INPUT (.+?)
+Value LAST_OUTPUT (.+?)
+Value LAST_OUTPUT_HANG (.+?)
+
+Start
+  ^\S+\s+is\s+.+?,\s+line\s+protocol.*$$ -> Continue.Record
+  ^${INTERFACE}\s+is\s+${LINK_STATUS},\s+line\s+protocol\s+is\s+${PROTOCOL_STATUS}\s*$$
+  ^\s+Last\s+input\s+${LAST_INPUT},\s+output\s+${LAST_OUTPUT},\s+output\s+hang\s+${LAST_OUTPUT_HANG}\s*$$\s*$$
+  ^Load\s+for\s+
+  ^Time\s+source\s+is

@@ -1,0 +1,6 @@
+Value Required NAME ([0-9]+|backplane)
+Value Required SN ([A-Z0-9]{12,20})
+
+
+Start
+  ^${NAME}[\S\s]+-[\S\s]+ ${SN} -> Record
