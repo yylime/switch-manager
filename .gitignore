@@ -1,5 +1,4 @@
 .vscode
-.env
 backend/data/*
 backend/logs/*
 node_modules/
