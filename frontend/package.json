@@ -73,7 +73,7 @@
     "@tanstack/router-plugin": "^1.145.2",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/diff-match-patch": "^1.0.36",
-    "@types/node": "^24.10.4",
+    "@types/node": "^25.5.0",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/react-syntax-highlighter": "^15.5.13",
