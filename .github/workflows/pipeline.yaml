@@ -1,0 +1,88 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  # --- 后端测试任务 ---
+  backend-tests:
+    runs-on: ubuntu-latest
+    # 启动 GitHub 托管的 Postgres 服务（相当于自动帮你跑了一个临时数据库）
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: app
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "backend/pyproject.toml"
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          uv sync
+
+      - name: Run Database Migrations (Prestart)
+        env:
+          # 覆盖 .env 中的配置以连接到 Action 里的 Postgres
+          POSTGRES_SERVER: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: app
+          SECRET_KEY: test_secret_key
+        run: |
+          cd backend
+          uv run sh ./scripts/prestart.sh
+
+  # --- 前端构建任务 ---
+  frontend-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Install Frontend Dependencies
+        run: |
+          cd frontend
+          pnpm install
+
+      - name: Generate OpenAPI Client
+        run: |
+          cd frontend
+          # 确保这一步不需要后端运行（通常是读取后端的 openapi.json 文件或静态导出）
+          pnpm generate-client
+
+      - name: Build Frontend
+        run: |
+          cd frontend
+          pnpm run build

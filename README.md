@@ -43,6 +43,63 @@
 - webssh开发
 - ...
 
+## Quick Start
+
+### 初始化项目
+强烈建议手动学习项目环境搭建，虽然当前Docker很方便（但如果纯内外部署代理配置也比较复杂），但是有很多小的问题(例如桥接IP和内网地址冲突)解决起来不如本地环境舒服，当然这只是个人的建议。
+#### 前置环境
+官网的脚本足够支持您安装本项目的所有依赖：
+1. [postgresql](https://www.postgresql.org/download/)
+2. pythong管理 [uv](https://uv.doczh.com/getting-started/installation/)
+3. [node.js](https://nodejs.org/en/download)
+
+#### 全局配置
+全局配置文件 `.env`，由于没有开启Email配置，所以仅需配置如下内容，项目开始前应该创建好数据库，并且给账户超级权限用于数据库操作。
+```
+# Backend
+SECRET_KEY=yylime
+FIRST_SUPERUSER=admin@admin.com
+FIRST_SUPERUSER_PASSWORD=admin@123
+# Postgres
+POSTGRES_SERVER=db
+POSTGRES_PORT=5432
+POSTGRES_DB=app
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+```
+#### 后端
+```sh
+cd backend
+# 创建python虚拟环境
+uv sync
+# 启动后端
+source .venv/bin/activate
+# 初始化db
+sh ./scripts/prestart.sh
+# 启动
+fastapi dev app/main.py
+```
+#### 前端
+这里要注意开发环境要配置 `frontend/.env`中的 `VITE_API_URL=http://localhost:8000`。同时注意 `frontend/openapi-ts.config.ts`中`input`和后端API端口一致。
+```sh
+cd frontend
+# 我习惯使用pnpm
+npm install -g pnpm
+# 安装依赖
+pnpm install
+# openapi生成
+pnpm generate-client
+# 启动
+pnpm run dev
+```
+然后您可以使用`.env`中的账号密码来访问前端 `http://localhost:5173`
+#### 开始使用
+每日定时任务才会开启dashboard的Card统计信息
+
+1. 登录后点击交换机，点击导出，按照导出表的内容进行填写交换机内容后进行导入
+2. 管理 -> 定时任务 -> 新增备份定时任务即可
+3. 常用表格 -> 立即刷新
+
 ## 系统部分截图
 Dashboard
 ![dashboard](imgs/dashboard.png)
