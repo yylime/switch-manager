@@ -61,7 +61,7 @@ export function SchedulerTable() {
 
 
 
-  const { data: serverData, isLoading } = useScheduler()
+  const { data: serverData } = useScheduler()
   // If useInspectors supports params, call useInspectors({ page, pageSize, searchText: globalFilter })
   // For now use returned data and count
   // serverData expected shape: { data: Inspector[], count: number }
