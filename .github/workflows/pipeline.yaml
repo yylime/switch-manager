@@ -55,6 +55,18 @@ jobs:
           cd backend
           uv run sh ./scripts/prestart.sh
 
+          uv run fastapi run app/main.py --port 8000 &
+          
+          # 等待几秒钟让服务起来
+          sleep 5
+          
+          # 使用 curl 测试接口是否响应 (健康检查)
+          echo "Testing API health..."
+          curl -f http://localhost:8000/api/v1/utils/health-check/ || (echo "API is down" && exit 1)
+          
+          # 如果你有编写 pytest 单元测试，这是最佳实践：
+          # uv run pytest
+
   # --- 前端构建任务 ---
   frontend-checks:
     runs-on: ubuntu-latest
