@@ -23,6 +23,7 @@ import { Route as authOtpRouteImport } from './routes/(auth)/otp'
 import { Route as authForgotPasswordRouteImport } from './routes/(auth)/forgot-password'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
 import { Route as AuthenticatedVrfsIndexRouteImport } from './routes/_authenticated/vrfs/index'
+import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSwitchesIndexRouteImport } from './routes/_authenticated/switches/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedSchedulerIndexRouteImport } from './routes/_authenticated/scheduler/index'
@@ -108,6 +109,11 @@ const AuthenticatedSettingsRouteRoute =
 const AuthenticatedVrfsIndexRoute = AuthenticatedVrfsIndexRouteImport.update({
   id: '/vrfs/',
   path: '/vrfs/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTasksIndexRoute = AuthenticatedTasksIndexRouteImport.update({
+  id: '/tasks/',
+  path: '/tasks/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedSwitchesIndexRoute =
@@ -235,6 +241,7 @@ export interface FileRoutesByFullPath {
   '/scheduler': typeof AuthenticatedSchedulerIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/switches': typeof AuthenticatedSwitchesIndexRoute
+  '/tasks': typeof AuthenticatedTasksIndexRoute
   '/vrfs': typeof AuthenticatedVrfsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -265,6 +272,7 @@ export interface FileRoutesByTo {
   '/scheduler': typeof AuthenticatedSchedulerIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/switches': typeof AuthenticatedSwitchesIndexRoute
+  '/tasks': typeof AuthenticatedTasksIndexRoute
   '/vrfs': typeof AuthenticatedVrfsIndexRoute
 }
 export interface FileRoutesById {
@@ -298,6 +306,7 @@ export interface FileRoutesById {
   '/_authenticated/scheduler/': typeof AuthenticatedSchedulerIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/switches/': typeof AuthenticatedSwitchesIndexRoute
+  '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
   '/_authenticated/vrfs/': typeof AuthenticatedVrfsIndexRoute
 }
 export interface FileRouteTypes {
@@ -331,6 +340,7 @@ export interface FileRouteTypes {
     | '/scheduler'
     | '/settings/'
     | '/switches'
+    | '/tasks'
     | '/vrfs'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -361,6 +371,7 @@ export interface FileRouteTypes {
     | '/scheduler'
     | '/settings'
     | '/switches'
+    | '/tasks'
     | '/vrfs'
   id:
     | '__root__'
@@ -393,6 +404,7 @@ export interface FileRouteTypes {
     | '/_authenticated/scheduler/'
     | '/_authenticated/settings/'
     | '/_authenticated/switches/'
+    | '/_authenticated/tasks/'
     | '/_authenticated/vrfs/'
   fileRoutesById: FileRoutesById
 }
@@ -508,6 +520,13 @@ declare module '@tanstack/react-router' {
       path: '/vrfs'
       fullPath: '/vrfs'
       preLoaderRoute: typeof AuthenticatedVrfsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/tasks/': {
+      id: '/_authenticated/tasks/'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof AuthenticatedTasksIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/switches/': {
@@ -663,6 +682,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedIptablesIndexRoute: typeof AuthenticatedIptablesIndexRoute
   AuthenticatedSchedulerIndexRoute: typeof AuthenticatedSchedulerIndexRoute
   AuthenticatedSwitchesIndexRoute: typeof AuthenticatedSwitchesIndexRoute
+  AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
   AuthenticatedVrfsIndexRoute: typeof AuthenticatedVrfsIndexRoute
 }
 
@@ -679,6 +699,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIptablesIndexRoute: AuthenticatedIptablesIndexRoute,
   AuthenticatedSchedulerIndexRoute: AuthenticatedSchedulerIndexRoute,
   AuthenticatedSwitchesIndexRoute: AuthenticatedSwitchesIndexRoute,
+  AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
   AuthenticatedVrfsIndexRoute: AuthenticatedVrfsIndexRoute,
 }
 

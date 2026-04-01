@@ -9,6 +9,8 @@ import {
   Table2Icon,
   Users,
   GitCompareIcon,
+  Network
+  
 } from 'lucide-react'
 
 import { type SidebarData } from '../types'
@@ -29,7 +31,7 @@ return {
         {
           title: '交换机',
           url: '/switches',
-          icon: ListTodo,
+          icon: Network,
         },
         {
           title: '配置分析',
@@ -53,6 +55,11 @@ return {
               url: '/arptables',
             },
           ],
+        },
+        {
+          title: '后台任务',
+          url: '/tasks',
+          icon: ListTodo,
         },
       ],
     },

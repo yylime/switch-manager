@@ -3,7 +3,7 @@
 import type { CancelablePromise } from './core/CancelablePromise';
 import { OpenAPI } from './core/OpenAPI';
 import { request as __request } from './core/request';
-import type { ArptablesReadArptablesData, ArptablesReadArptablesResponse, ArptablesFlushArpBackgroundResponse, BranchesReadBranchesData, BranchesReadBranchesResponse, BranchesCreateBranchData, BranchesCreateBranchResponse, BranchesReadBranchData, BranchesReadBranchResponse, BranchesUpdateBranchData, BranchesUpdateBranchResponse, BranchesDeleteBranchData, BranchesDeleteBranchResponse, DashboardGetCardDataResponse, DashboardGetBranchStatisticsResponse, DashboardGetSuccessCountByDayData, DashboardGetSuccessCountByDayResponse, DiffsGetConfigDiffsData, DiffsGetConfigDiffsResponse, DiffsGetSwitchListResponse, DiffsGetSwitchConfigDateData, DiffsGetSwitchConfigDateResponse, DiffsGetSwitchConfigDiffsData, DiffsGetSwitchConfigDiffsResponse, InspectorsReadInspectorsData, InspectorsReadInspectorsResponse, InspectorsCreateInspectorData, InspectorsCreateInspectorResponse, InspectorsReadInspectorData, InspectorsReadInspectorResponse, InspectorsUpdateInspectorData, InspectorsUpdateInspectorResponse, InspectorsDeleteInspectorData, InspectorsDeleteInspectorResponse, IptablesReadIptablesData, IptablesReadIptablesResponse, IptablesFlushIptablesBackgroundResponse, LoginLoginAccessTokenData, LoginLoginAccessTokenResponse, LoginTestTokenResponse, LoginRecoverPasswordData, LoginRecoverPasswordResponse, LoginResetPasswordData, LoginResetPasswordResponse, LoginRecoverPasswordHtmlContentData, LoginRecoverPasswordHtmlContentResponse, ScheduleCreateBackupJobData, ScheduleCreateBackupJobResponse, ScheduleListBackupJobsResponse, ScheduleUpdateBackupJobData, ScheduleUpdateBackupJobResponse, ScheduleDeleteBackupJobData, ScheduleDeleteBackupJobResponse, SwitchesReadSwitchesData, SwitchesReadSwitchesResponse, SwitchesCreateSwitchData, SwitchesCreateSwitchResponse, SwitchesReadSwitchData, SwitchesReadSwitchResponse, SwitchesUpdateSwitchData, SwitchesUpdateSwitchResponse, SwitchesDeleteSwitchData, SwitchesDeleteSwitchResponse, SwitchesDeleteMultipleSwitchesData, SwitchesDeleteMultipleSwitchesResponse, SwitchesBackupSwitchData, SwitchesBackupSwitchResponse, SwitchesBackupMultipleSwitchesData, SwitchesBackupMultipleSwitchesResponse, SwitchesImportSwitchesData, SwitchesImportSwitchesResponse, SwitchesGetSwitchConfigData, SwitchesGetSwitchConfigResponse, SwitchesExportSwitchesResponse, SwitchLoginTypeReadSwitchLoginTypesResponse, UsersReadUsersData, UsersReadUsersResponse, UsersCreateUserData, UsersCreateUserResponse, UsersReadUserMeResponse, UsersDeleteUserMeResponse, UsersUpdateUserMeData, UsersUpdateUserMeResponse, UsersUpdatePasswordMeData, UsersUpdatePasswordMeResponse, UsersRegisterUserData, UsersRegisterUserResponse, UsersReadUserByIdData, UsersReadUserByIdResponse, UsersUpdateUserData, UsersUpdateUserResponse, UsersDeleteUserData, UsersDeleteUserResponse, UtilsTestEmailData, UtilsTestEmailResponse, UtilsHealthCheckResponse, VrfsReadVrfsData, VrfsReadVrfsResponse, VrfsFlushVrfBackgroundResponse } from './types.gen';
+import type { ArptablesReadArptablesData, ArptablesReadArptablesResponse, ArptablesFlushArpBackgroundResponse, BranchesReadBranchesData, BranchesReadBranchesResponse, BranchesCreateBranchData, BranchesCreateBranchResponse, BranchesReadBranchData, BranchesReadBranchResponse, BranchesUpdateBranchData, BranchesUpdateBranchResponse, BranchesDeleteBranchData, BranchesDeleteBranchResponse, DashboardGetCardDataResponse, DashboardGetBranchStatisticsResponse, DashboardGetSuccessCountByDayData, DashboardGetSuccessCountByDayResponse, DiffsGetConfigDiffsData, DiffsGetConfigDiffsResponse, DiffsGetSwitchListResponse, DiffsGetSwitchConfigDateData, DiffsGetSwitchConfigDateResponse, DiffsGetSwitchConfigDiffsData, DiffsGetSwitchConfigDiffsResponse, InspectorsReadInspectorsData, InspectorsReadInspectorsResponse, InspectorsCreateInspectorData, InspectorsCreateInspectorResponse, InspectorsReadInspectorData, InspectorsReadInspectorResponse, InspectorsUpdateInspectorData, InspectorsUpdateInspectorResponse, InspectorsDeleteInspectorData, InspectorsDeleteInspectorResponse, IptablesReadIptablesData, IptablesReadIptablesResponse, IptablesFlushIptablesBackgroundResponse, LoginLoginAccessTokenData, LoginLoginAccessTokenResponse, LoginTestTokenResponse, LoginRecoverPasswordData, LoginRecoverPasswordResponse, LoginResetPasswordData, LoginResetPasswordResponse, LoginRecoverPasswordHtmlContentData, LoginRecoverPasswordHtmlContentResponse, PrivateCreateUserData, PrivateCreateUserResponse, ScheduleCreateBackupJobData, ScheduleCreateBackupJobResponse, ScheduleListBackupJobsResponse, ScheduleUpdateBackupJobData, ScheduleUpdateBackupJobResponse, ScheduleDeleteBackupJobData, ScheduleDeleteBackupJobResponse, SwitchesReadSwitchesData, SwitchesReadSwitchesResponse, SwitchesCreateSwitchData, SwitchesCreateSwitchResponse, SwitchesReadSwitchData, SwitchesReadSwitchResponse, SwitchesUpdateSwitchData, SwitchesUpdateSwitchResponse, SwitchesDeleteSwitchData, SwitchesDeleteSwitchResponse, SwitchesDeleteMultipleSwitchesData, SwitchesDeleteMultipleSwitchesResponse, SwitchesBackupSwitchData, SwitchesBackupSwitchResponse, SwitchesBackupMultipleSwitchesData, SwitchesBackupMultipleSwitchesResponse, SwitchesImportSwitchesData, SwitchesImportSwitchesResponse, SwitchesGetSwitchConfigData, SwitchesGetSwitchConfigResponse, SwitchesExportSwitchesResponse, SwitchLoginTypeReadSwitchLoginTypesResponse, TasksReadBackupTasksData, TasksReadBackupTasksResponse, UsersReadUsersData, UsersReadUsersResponse, UsersCreateUserData, UsersCreateUserResponse, UsersReadUserMeResponse, UsersDeleteUserMeResponse, UsersUpdateUserMeData, UsersUpdateUserMeResponse, UsersUpdatePasswordMeData, UsersUpdatePasswordMeResponse, UsersRegisterUserData, UsersRegisterUserResponse, UsersReadUserByIdData, UsersReadUserByIdResponse, UsersUpdateUserData, UsersUpdateUserResponse, UsersDeleteUserData, UsersDeleteUserResponse, UtilsTestEmailData, UtilsTestEmailResponse, UtilsHealthCheckResponse, VrfsReadVrfsData, VrfsReadVrfsResponse, VrfsFlushVrfBackgroundResponse } from './types.gen';
 
 export class ArptablesService {
     /**
@@ -542,6 +542,28 @@ export class LoginService {
     }
 }
 
+export class PrivateService {
+    /**
+     * Create User
+     * Create a new user.
+     * @param data The data for the request.
+     * @param data.requestBody
+     * @returns UserPublic Successful Response
+     * @throws ApiError
+     */
+    public static createUser(data: PrivateCreateUserData): CancelablePromise<PrivateCreateUserResponse> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v1/private/users/',
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+}
+
 export class ScheduleService {
     /**
      * Create Backup Job
@@ -873,6 +895,35 @@ export class SwitchLoginTypeService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/switch_login_type/'
+        });
+    }
+}
+
+export class TasksService {
+    /**
+     * Read Backup Tasks
+     * Retrieve backup tasks.
+     * @param data The data for the request.
+     * @param data.skip
+     * @param data.limit
+     * @param data.searchText
+     * @param data.status
+     * @returns BackupTasksPublic Successful Response
+     * @throws ApiError
+     */
+    public static readBackupTasks(data: TasksReadBackupTasksData = {}): CancelablePromise<TasksReadBackupTasksResponse> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/tasks/',
+            query: {
+                skip: data.skip,
+                limit: data.limit,
+                search_text: data.searchText,
+                status: data.status
+            },
+            errors: {
+                422: 'Validation Error'
+            }
         });
     }
 }

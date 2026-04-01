@@ -69,6 +69,40 @@ export type BackupScheduler = {
     created_at?: string;
 };
 
+export type BackupTaskPublic = {
+    /**
+     * 任务类型: backup_all_switches 或 backup_failed_switches
+     */
+    task_type: string;
+    /**
+     * 任务状态: running, success, failed
+     */
+    status?: string;
+    /**
+     * 任务结果消息
+     */
+    message?: string;
+    /**
+     * 错误信息
+     */
+    error?: (string | null);
+    /**
+     * 任务开始时间
+     */
+    start_time?: string;
+    /**
+     * 任务结束时间
+     */
+    end_time?: (string | null);
+    id: string;
+    created_at: string;
+};
+
+export type BackupTasksPublic = {
+    data: Array<BackupTaskPublic>;
+    count: number;
+};
+
 export type Body_login_login_access_token = {
     grant_type?: (string | null);
     username: string;
@@ -215,6 +249,13 @@ export type Message = {
 export type NewPassword = {
     token: string;
     new_password: string;
+};
+
+export type PrivateUserCreate = {
+    email: string;
+    password: string;
+    full_name: string;
+    is_verified?: boolean;
 };
 
 export type Switch = {
@@ -723,6 +764,12 @@ export type LoginRecoverPasswordHtmlContentData = {
 
 export type LoginRecoverPasswordHtmlContentResponse = (string);
 
+export type PrivateCreateUserData = {
+    requestBody: PrivateUserCreate;
+};
+
+export type PrivateCreateUserResponse = (UserPublic);
+
 export type ScheduleCreateBackupJobData = {
     requestBody: BackupJobCreate;
 };
@@ -813,6 +860,15 @@ export type SwitchesGetSwitchConfigResponse = (SwitchConfigShow);
 export type SwitchesExportSwitchesResponse = (unknown);
 
 export type SwitchLoginTypeReadSwitchLoginTypesResponse = (SwitchLoginTypesPublic);
+
+export type TasksReadBackupTasksData = {
+    limit?: number;
+    searchText?: string;
+    skip?: number;
+    status?: Array<(string)>;
+};
+
+export type TasksReadBackupTasksResponse = (BackupTasksPublic);
 
 export type UsersReadUsersData = {
     limit?: number;

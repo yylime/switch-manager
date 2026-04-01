@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from app.api.routes import login, private, users, utils
 from app.api.routes import inspectors, branches, switches, switch_login_type, iptables, arptables, vrfs, dashboard, config_diffs
-from app.api.routes import scheduler
+from app.api.routes import scheduler, tasks
 from app.core.config import settings
 
 api_router = APIRouter()
@@ -19,6 +19,7 @@ api_router.include_router(vrfs.router)
 api_router.include_router(dashboard.router)
 api_router.include_router(config_diffs.router)
 api_router.include_router(scheduler.router)
+api_router.include_router(tasks.router)
 
 
 if settings.ENVIRONMENT == "local":

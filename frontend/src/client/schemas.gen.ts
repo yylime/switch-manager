@@ -236,6 +236,93 @@ export const BackupSchedulerSchema = {
     title: 'BackupScheduler'
 } as const;
 
+export const BackupTaskPublicSchema = {
+    properties: {
+        task_type: {
+            type: 'string',
+            maxLength: 50,
+            title: 'Task Type',
+            description: '任务类型: backup_all_switches 或 backup_failed_switches'
+        },
+        status: {
+            type: 'string',
+            title: 'Status',
+            description: '任务状态: running, success, failed',
+            default: 'running'
+        },
+        message: {
+            type: 'string',
+            maxLength: 500,
+            title: 'Message',
+            description: '任务结果消息',
+            default: ''
+        },
+        error: {
+            anyOf: [
+                {
+                    type: 'string'
+                },
+                {
+                    type: 'null'
+                }
+            ],
+            title: 'Error',
+            description: '错误信息'
+        },
+        start_time: {
+            type: 'string',
+            format: 'date-time',
+            title: 'Start Time',
+            description: '任务开始时间'
+        },
+        end_time: {
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'date-time'
+                },
+                {
+                    type: 'null'
+                }
+            ],
+            title: 'End Time',
+            description: '任务结束时间'
+        },
+        id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Id'
+        },
+        created_at: {
+            type: 'string',
+            format: 'date-time',
+            title: 'Created At'
+        }
+    },
+    type: 'object',
+    required: ['task_type', 'id', 'created_at'],
+    title: 'BackupTaskPublic'
+} as const;
+
+export const BackupTasksPublicSchema = {
+    properties: {
+        data: {
+            items: {
+                '$ref': '#/components/schemas/BackupTaskPublic'
+            },
+            type: 'array',
+            title: 'Data'
+        },
+        count: {
+            type: 'integer',
+            title: 'Count'
+        }
+    },
+    type: 'object',
+    required: ['data', 'count'],
+    title: 'BackupTasksPublic'
+} as const;
+
 export const Body_login_login_access_tokenSchema = {
     properties: {
         grant_type: {
@@ -675,6 +762,31 @@ export const NewPasswordSchema = {
     type: 'object',
     required: ['token', 'new_password'],
     title: 'NewPassword'
+} as const;
+
+export const PrivateUserCreateSchema = {
+    properties: {
+        email: {
+            type: 'string',
+            title: 'Email'
+        },
+        password: {
+            type: 'string',
+            title: 'Password'
+        },
+        full_name: {
+            type: 'string',
+            title: 'Full Name'
+        },
+        is_verified: {
+            type: 'boolean',
+            title: 'Is Verified',
+            default: false
+        }
+    },
+    type: 'object',
+    required: ['email', 'password', 'full_name'],
+    title: 'PrivateUserCreate'
 } as const;
 
 export const SwitchSchema = {

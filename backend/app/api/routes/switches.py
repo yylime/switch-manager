@@ -10,7 +10,6 @@ from fastapi import (
     File,
     Query,
     Body,
-    Depends,
 )
 from fastapi.responses import FileResponse
 from sqlmodel import func, select, or_, and_, delete
@@ -40,9 +39,14 @@ from app.models import (
 )
 
 from app.services.switches.config.backup import download_config
+from app.services.task import task
 
 router = APIRouter(prefix="/switches", tags=["switches"])
 
+
+@task(task_type="manual_backup", message=lambda switch_id: f"正在执行手动备份: switch {switch_id}")
+def manual_backup_switch(switch_id):
+    download_config(switch_id)
 
 def base_query_method(
     search_text: str = "",
@@ -286,7 +290,7 @@ def backup_switch(
 
     # Implement your backup logic here
     # For example, you might copy the switch data to a backup table
-    background_tasks.add_task(download_config, switch.id)
+    background_tasks.add_task(manual_backup_switch, switch.id)
     return Message(message="Switch backed up successfully")
 
 
@@ -312,7 +316,7 @@ def backup_multiple_switches(
 
     # 添加备份任务
     for switch in switches:
-        background_tasks.add_task(download_config, switch.id)
+        background_tasks.add_task(manual_backup_switch, switch.id)
 
     message = f"Backups scheduled for {len(switches)} switches"
     if missing:

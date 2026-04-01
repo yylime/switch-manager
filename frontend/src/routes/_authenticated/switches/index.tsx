@@ -7,6 +7,7 @@ const SwitchesSearchSchema = z.object({
   pageSize: z.number().optional().catch(10),
   filter: z.string().optional().catch(''),
   branch: z.array(z.string()).optional().catch([]),
+  status: z.array(z.string()).optional().catch([]),
 })
 
 export const Route = createFileRoute('/_authenticated/switches/')({
