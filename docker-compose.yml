@@ -19,7 +19,8 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: .
+      dockerfile: backend/Dockerfile
     restart: always
     env_file: .env
     environment:
@@ -42,9 +43,10 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./frontend/Dockerfile
+      dockerfile: frontend/Dockerfile
       args:
         - VITE_API_URL=/
+        - NODE_ENV=production
     restart: always
     depends_on:
       - backend

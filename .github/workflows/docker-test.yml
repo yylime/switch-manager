@@ -1,0 +1,61 @@
+name: Docker Compose Integration Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  docker-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 拉取代码（此时 .env 会被下载到当前目录）
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. 验证 .env 是否真的存在（可选，用于调试）
+      - name: Verify .env exists
+        run: |
+          if [ -f .env ]; then
+            echo ".env file found."
+          else
+            echo ".env file NOT found! Testing will likely fail."
+            exit 1
+          fi
+
+      # 3. 启动容器
+      # Docker Compose 会默认读取当前目录下的 .env
+      - name: Build and Start Containers
+        run: docker compose up -d --build
+
+      # 4. 等待数据库健康检查通过
+      # 你的 docker-compose 里配置了 healthcheck，这里利用它来同步
+      - name: Wait for DB to be healthy
+        run: |
+          echo "Waiting for PostgreSQL..."
+          timeout 60s bash -c 'until [ "$(docker inspect --format="{{.State.Health.Status}}" $(docker compose ps -q db))" == "healthy" ]; do sleep 2; done'
+          echo "Database is ready."
+
+      # 5. 冒烟测试：验证整个链路是否通畅
+      - name: Smoke Test
+        run: |
+          # 检查前端端口
+          curl -I http://localhost:80 | grep "200 OK"
+          
+          # 检查后端接口（假设有一个 /api 路径，请根据实际情况修改）
+          # 即使后端还没完全初始化好，至少 Nginx 应该已经可以访问了
+          echo "Checking application availability..."
+          curl --fail http://localhost/ || exit 1
+
+      # 6. 如果测试失败，打印日志以便排查
+      - name: Dump logs on failure
+        if: failure()
+        run: |
+          docker compose ps
+          docker compose logs
+
+      # 7. 清理环境
+      - name: Stop and Cleanup
+        run: docker compose down
