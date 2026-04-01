@@ -66,6 +66,11 @@ POSTGRES_DB=app
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 ```
+#### docker
+```
+docker-compose up -d
+```
+如果手动启动项目，可以参考如下步骤
 #### 后端
 ```sh
 cd backend
