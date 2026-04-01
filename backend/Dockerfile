@@ -23,8 +23,8 @@ ENV PATH="/app/.venv/bin:$PATH"
 # Install dependencies
 # Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
 RUN --mount=type=cache,target=/root/.cache/uv \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    --mount=type=bind,source=backend/uv.lock,target=/app/uv.lock \
+    --mount=type=bind,source=backend/pyproject.toml,target=/app/pyproject.toml \
     uv sync --frozen --no-install-workspace --package app
 
 COPY ./backend/scripts /app/backend/scripts
@@ -36,10 +36,10 @@ COPY ./backend/app /app/backend/app
 # Sync the project
 # Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
 RUN --mount=type=cache,target=/root/.cache/uv \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --frozen --package app
+    --mount=type=bind,source=backend/uv.lock,target=/app/uv.lock \
+    --mount=type=bind,source=backend/pyproject.toml,target=/app/pyproject.toml \
+    uv sync --frozen
 
 WORKDIR /app/backend/
 
-CMD ["fastapi", "run", "--workers", "4", "app/main.py"]
+CMD ["bash", "-c", "bash ./scripts/prestart.sh && fastapi run --workers 4 app/main.py --host 0.0.0.0 --port 8000"]

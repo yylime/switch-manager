@@ -34,11 +34,7 @@ services:
     # 生产环境不需要暴露 8000 给宿主机，仅供 Nginx 内部访问
     expose:
       - "8000"
-    command: >
-      bash -c "
-        bash /app/scripts/prestart.sh && 
-        fastapi run --workers 4 app/main.py --host 0.0.0.0 --port 8000
-      "
+
 
   frontend:
     build:
